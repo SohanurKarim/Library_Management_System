@@ -1,0 +1,26 @@
+﻿@model IEnumerable<LMS.Models.Author>
+@{
+    ViewData["Title"] = "Authors";
+}
+
+<h2>Authors</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Date of Birth</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var a in Model)
+        {
+            <tr>
+                <td>@a.FirstName @a.LastName</td>
+                <td>@(a.DateOfBirth?.ToShortDateString() ?? "-")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Authors/Create">Add Author</a>

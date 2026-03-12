@@ -1,0 +1,35 @@
+﻿@model LMS.Models.Book
+@{
+    ViewData["Title"] = "Book Details";
+}
+
+<h2>@Model.Title</h2>
+<p><strong>ISBN:</strong> @Model.ISBN</p>
+<p><strong>Author:</strong> @Model.Author.FirstName @Model.Author.LastName</p>
+<p><strong>Available/Total Copies:</strong> @Model.AvailableCopies / @Model.TotalCopies</p>
+<p><strong>Publication Year:</strong> @Model.PublicationYear</p>
+
+<h3>Borrow Records</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Student Name</th>
+            <th>Borrow Date</th>
+            <th>Due Date</th>
+            <th>Return Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var br in Model.BorrowRecords)
+        {
+            <tr>
+                <td>@br.StudentName</td>
+                <td>@br.BorrowDate.ToShortDateString()</td>
+                <td>@br.DueDate.ToShortDateString()</td>
+                <td>@(br.IsReturned? br.ReturnDate?.ToShortDateString() : "Not returned")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Books">Back to list</a>

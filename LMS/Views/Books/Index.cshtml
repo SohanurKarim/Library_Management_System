@@ -1,0 +1,39 @@
+﻿@model IEnumerable<LMS.Models.Book>
+@{
+    ViewData["Title"] = "Books List";
+}
+
+<h2>Books</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>ISBN</th>
+            <th>Author</th>
+            <th>Available/Total Copies</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.ISBN</td>
+                <td>@book.Author.FirstName @book.Author.LastName</td>
+                <td>@book.AvailableCopies / @book.TotalCopies</td>
+                @* <td>
+                    <a href="/Books/Details/@book.Id">Details</a> |
+                    <a href="/Books/Borrow/@book.Id">Borrow</a>
+                </td> *@
+                <td>
+                    <a asp-action="Details" asp-route-id="@book.Id">Details</a> |
+                    <a asp-action="Borrow" asp-route-bookId="@book.Id">Borrow</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="/Books/Create">Add New Book</a>
