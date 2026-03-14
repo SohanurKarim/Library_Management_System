@@ -70,12 +70,12 @@ namespace LMS.Controllers
             return View(book);
         }
 
-        public async Task<IActionResult> Borrow(int bookId)
+        public async Task<IActionResult> Borrow(int BookId)
         {
-            var book = await _context.Books.FindAsync(bookId);
+            var book = await _context.Books.FindAsync(BookId);
             if (book == null) return NotFound();
 
-            var record = new BorrowRecord { BookId = bookId, DueDate = DateTime.Now.AddDays(14) };
+            var record = new BorrowRecord { BookId = BookId, DueDate = DateTime.Now.AddDays(14) };
             ViewBag.BookTitle = book.Title;
             return View(record);
         }
