@@ -23,6 +23,6 @@ namespace LMS.Models
         [NotMapped]
         public bool IsReturned => ReturnDate.HasValue;
 
-        public Book Book { get; set; }
+        //public Book? Book { get; set; }
     }
 }
